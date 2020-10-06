@@ -155,7 +155,7 @@ public boolean modificar(){
             registro.put("nombre", us.getNombre());
             registro.put("apellido", us.getApellido());
             registro.put("correo", us.getCorreo());
-            registro.put("usuario", us.getUsuario());
+            registro.put("com/willianhdz/appinventaryitca/ui/usuario", us.getUsuario());
             registro.put("clave", us.getClave());
             registro.put("tipo", us.getTipo());
             registro.put("estado", us.getEstado_us());
@@ -190,7 +190,7 @@ public boolean modificar(){
             String[] parametros = {String.valueOf(us.getId_usu())};
             String[] campos = {
                     "id_usuario", "nombre", "apellido", "correo",
-                    "usuario", "clave", "tipo", "estado", "pregunta",
+                    "com/willianhdz/appinventaryitca/ui/usuario", "clave", "tipo", "estado", "pregunta",
                     "respuesta", "fecha_de_registro"
             };
             Cursor fila = bd.query("tb_usuario", campos, "id_usuario=?", parametros, null, null, null);
@@ -297,7 +297,7 @@ public boolean modificar(){
             registro.put("nombre", nom);
             registro.put("apellido", ape);
             registro.put("correo", email);
-            registro.put("usuario", user);
+            registro.put("com/willianhdz/appinventaryitca/ui/usuario", user);
             registro.put("clave", pass);
             registro.put("tipo", tipo);
             registro.put("estado", est);
