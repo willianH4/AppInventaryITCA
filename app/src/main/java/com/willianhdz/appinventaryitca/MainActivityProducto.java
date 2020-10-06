@@ -1,33 +1,27 @@
 package com.willianhdz.appinventaryitca;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
-import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.willianhdz.appinventaryitca.ui.usuario.MainActivityUsuario;
+import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
+import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class MainActivityCategoria extends AppCompatActivity implements View.OnClickListener{
+public class MainActivityProducto extends AppCompatActivity implements View.OnClickListener{
     private FABToolbarLayout morph; //agregado para la toolbar
 
     private EditText et_id, et_nombre, et_estado;
@@ -192,7 +186,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
             public void onClick(DialogInterface dialogo, int id) {
         /*lntent intent —— new Intent(DashboardLuces.this, luces control sms. class), startActivity(intent),”/
         //DashboardLuces.this. finishAffinity(), */
-              //   MainActivityCategoria.this.finish();
+                //   MainActivityCategoria.this.finish();
             }
         });
         dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

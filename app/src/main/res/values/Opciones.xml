@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="TipoUsuario">
+        <item>Admininistrador</item>
+        <item>Gerente</item>
+        <item>Empleado</item>
+    </string-array>
+
+    <string-array name="Estado">
+        <item>Activo</item>
+        <item>Inactivo</item>
+    </string-array>
+
+    <string-array name="Preguntas">
+        <item>¿Nombre de tu mama?</item>
+        <item>¿Nombre de tu primera mascota?</item>
+        <item>¿Cual fue tu primera escuela?</item>
+    </string-array>
+</resources>

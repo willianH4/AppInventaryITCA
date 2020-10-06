@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_limpiar"
+        android:orderInCategory="2"
+        android:title="Limpiar"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_listaUsuarios"
+        android:orderInCategory="2"
+        android:title="Listar Usuarios"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_listaCategorias"
+        android:orderInCategory="2"
+        android:title="Listar Categorias"
+        app:showAsAction="never" />
+
+</menu>

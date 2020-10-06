@@ -1,4 +1,4 @@
-package com.willianhdz.appinventaryitca.db;
+package com.willianhdz.appinventaryitca.data.db;
 
 import android.content.ContentValues;
 import android.content.Context;
