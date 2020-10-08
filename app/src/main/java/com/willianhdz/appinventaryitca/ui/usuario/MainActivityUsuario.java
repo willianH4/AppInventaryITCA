@@ -1,5 +1,6 @@
 package com.willianhdz.appinventaryitca.ui.usuario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,9 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.willianhdz.appinventaryitca.MainActivityCategoria;
 import com.willianhdz.appinventaryitca.R;
 import com.willianhdz.appinventaryitca.data.Dtos.usuario;
 import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
+import com.willianhdz.appinventaryitca.recycleview.RecyclerviewCategorias;
+import com.willianhdz.appinventaryitca.recycleview.RecycleviewUsuario;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +28,7 @@ public class MainActivityUsuario extends AppCompatActivity {
     //Declaracion de variables
     private EditText txtnom, txtape, txtemail, txtuser,txtpass, txtrespuesta, txtid;
     private Spinner spntipo, spnpregunta, spnestado;
-    private Button btng, btnconcode, btned, btnel;
+    private Button btng, btnconcode, btned, btnel, btnlista;
 
     //Instancias
     Conexion_SQLite conexion = new Conexion_SQLite(this);
@@ -52,6 +56,16 @@ public class MainActivityUsuario extends AppCompatActivity {
         btnconcode = findViewById(R.id.btn_consultacodigo);
         btned = findViewById(R.id.btn_editar);
         btnel = findViewById(R.id.btn_borrar);
+
+        btnlista = findViewById(R.id.btn_listausu);
+
+        btnlista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Recyclecate = new Intent(MainActivityUsuario.this, RecycleviewUsuario.class);
+                startActivity(Recyclecate);
+            }
+        });
 
         //Informacion Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.TipoUsuario, android.R.layout.simple_spinner_item);

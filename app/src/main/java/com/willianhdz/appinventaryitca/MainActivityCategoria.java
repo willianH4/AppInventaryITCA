@@ -156,7 +156,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
         btn_consultar2 = (Button) findViewById(R.id.btn_consultar2);
         btn_eliminar = (Button) findViewById(R.id.btn_eliminar);
         btn_actualizar = (Button) findViewById(R.id.btn_actualizar);
-
+        btn_listar = (Button)findViewById(R.id.btn_listacate);
         //tv resultado —— (TextView) findViewById(R.id.tv resultado);
 
         btn_listar.setOnClickListener(new View.OnClickListener() {

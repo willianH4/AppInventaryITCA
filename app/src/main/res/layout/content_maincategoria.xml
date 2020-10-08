@@ -205,6 +205,25 @@
                 android:textSize="18sp"
                 />
 
+            <Button
+                android:id="@+id/btn_listacate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="Listar"
+                android:textColor="#fff"
+                android:background="@drawable/estiloboton"
+                android:shadowColor="#A82A2A"
+                android:shadowDx="20"
+                android:shadowDy="-9"
+                android:shadowRadius="5"
+                android:gravity="center"
+                android:textSize="18sp"
+                />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

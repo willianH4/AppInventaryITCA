@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_margin="@dimen/space3dp"
     android:background="#595454"
-    tools:context=".ui.Usuario.MainActivityUsuario">
+    tools:context=".ui.usuario.MainActivityUsuario">
 
     <Space
         android:layout_width="match_parent"
@@ -287,10 +287,9 @@
                 android:layout_height="16dp" />
 
             <Button
-                android:id="@+id/btn_lista"
+                android:id="@+id/btn_listausu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:background="@drawable/estiloboton"
                 android:textColor="#fff"
                 android:text="listar" />
