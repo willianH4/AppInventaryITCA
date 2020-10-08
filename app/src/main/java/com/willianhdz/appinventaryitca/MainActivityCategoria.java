@@ -23,7 +23,9 @@ import android.widget.Toast;
 
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.willianhdz.appinventaryitca.ui.usuario.MainActivityUsuario;
+import com.willianhdz.appinventaryitca.recycleview.RecyclerviewCategorias;
+import com.willianhdz.appinventaryitca.recycleview.RecycleviewUsuario;
+import com.willianhdz.appinventaryitca.ui.Usuario.MainActivityUsuario;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -31,7 +33,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
     private FABToolbarLayout morph; //agregado para la toolbar
 
     private EditText et_id, et_nombre, et_estado;
-    private Button btn_guardar, btn_consultar1, btn_consultar2, btn_eliminar, btn_actualizar;
+    private Button btn_guardar, btn_consultar1, btn_consultar2, btn_eliminar, btn_actualizar, btn_listar;
     private TextView tv_resultado;
 
     boolean inputEt=false;
@@ -44,41 +46,41 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
     Categorias2 datos = new Categorias2();
     AlertDialog.Builder dialogo;
 
+    /*
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                new android.app.AlertDialog.Builder(this)
+                        .setIcon(R.drawable.ic_close)
+                        .setTitle("Warning")
+                        .setMessage("¿Realmente desea salir?")
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                        {//un listener que at pulsar, cierre la aplicacion
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            new android.app.AlertDialog.Builder(this)
-                    .setIcon(R.drawable.ic_close)
-                    .setTitle("Warning")
-                    .setMessage("¿Realmente desea salir?")
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-                    {//un listener que at pulsar, cierre la aplicacion
+                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                                /*lntent intent —— new Intent(DashboardLuces.this, luces control sms.class), startActivity(intent),’”/
+            //MainActivity.this.finishAffinity(),
+            //finish()
 
-                            /*lntent intent —— new Intent(DashboardLuces.this, luces control sms.class), startActivity(intent),’”/
-        //MainActivity.this.finishAffinity(),
-        //finish()*/
+                                finish();
+                                Intent Retornar = new Intent(MainActivityCategoria.this, MainActivity.class);
+                                startActivity(Retornar);
+                            }
+                        })
+                        .show();
 
-                            finish();
-                            Intent Retornar = new Intent(MainActivityCategoria.this, MainActivity.class);
-                            startActivity(Retornar);
-                        }
-                    })
-                    .show();
+                // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
+                return true;
+            }
 
-            // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
-            return true;
+            //para las demas cosas, se reenvia el evento at listener habitual
+            return super.onKeyDown(keyCode, event);
         }
-
-        //para las demas cosas, se reenvia el evento at listener habitual
-        return super.onKeyDown(keyCode, event);
-    }
-
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +156,16 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
         btn_consultar2 = (Button) findViewById(R.id.btn_consultar2);
         btn_eliminar = (Button) findViewById(R.id.btn_eliminar);
         btn_actualizar = (Button) findViewById(R.id.btn_actualizar);
+        btn_listar = (Button)findViewById(R.id.btn_listaCate) ;
         //tv resultado —— (TextView) findViewById(R.id.tv resultado);
+
+        btn_listar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Recyclecate = new Intent(MainActivityCategoria.this, RecyclerviewCategorias.class);
+                startActivity(Recyclecate);
+            }
+        });
 
         String senal = "";
         String id = "";
@@ -192,7 +203,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
             public void onClick(DialogInterface dialogo, int id) {
         /*lntent intent —— new Intent(DashboardLuces.this, luces control sms. class), startActivity(intent),”/
         //DashboardLuces.this. finishAffinity(), */
-              //   MainActivityCategoria.this.finish();
+                //   MainActivityCategoria.this.finish();
             }
         });
         dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -202,8 +213,8 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
         });
         dialogo.show();
     }
-/*
-     //////////////////Comentado bloque de menu no implementado
+
+    //////////////////Comentado bloque de menu no implementado
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu,’ this adds items to the action bar if it is present.
@@ -218,26 +229,19 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
         // as you specify a parent activity in AndroidManifest. xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiablelfStatement
-        if (id == R.id.action_limpiar) {
-            et_nombre.setText(null);
-            et_estado.setText(null);
-            et_id.setText(null);
-            return true;
-            /*
-        } else if (id == R.id.action_listaCategorias) {
-            Intent listViewActivity = new Intent(MainActivity.this, List_view_articulos.class);
+        if (id == R.id.action_listaCategorias) {
+            Intent listViewActivity = new Intent(MainActivityCategoria.this, RecyclerviewCategorias.class);
             startActivity(listViewActivity);
             return true;
         } else if (id == R.id.action_listaUsuarios) {
-            Intent listViewActivity = new Intent(MainActivity.this, Consulta_spinner.class);
+            Intent listViewActivity = new Intent(MainActivityCategoria.this, RecycleviewUsuario.class);
             startActivity(listViewActivity);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-*/
+
 ///////////////////////////Finaliza bloque del menu no usado
 
     public void alta(View v) {

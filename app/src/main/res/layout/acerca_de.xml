@@ -74,7 +74,8 @@
                             android:textStyle="normal"
                             android:textColor="#ffffff"
                             android:background="@android:color/transparent"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:gravity="center_horizontal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -174,7 +175,7 @@
                                     android:layout_width="235dp"
                                     android:layout_height="273dp"
                                     android:layout_marginTop="5dp"
-                                    android:src="@drawable/login" />
+                                    android:src="@drawable/trabajador" />
 
 
                                 <TextView
