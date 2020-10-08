@@ -3,18 +3,18 @@ package com.willianhdz.appinventaryitca.data.Dtos;
 import java.io.Serializable;
 
 public class producto implements Serializable {
-int  id_pr;
-String nom_pro;
-String des_pro;
-double stock;
-double precio;
-String unidad;
-int estado;
-int categoria;
+    private int  id_pr;
+    private String nom_pro;
+    private String des_pro;
+    private double stock;
+    private double precio;
+    private String unidad;
+    private int estado;
+    private int categoria;
+    private String categoriaString;
 
-
-public producto() {
-}
+    public producto() {
+    }
 
     public producto(int id_pr, String nom_pro, String des_pro, double stock, double precio, String unidad, int estado, int categoria) {
         this.id_pr = id_pr;
@@ -92,5 +92,12 @@ public producto() {
         this.categoria = categoria;
     }
 
+    public String getCategoriaString(){
+        return this.categoriaString;
+    }
+
+    public void setCategoriaString(String categoriaString) {
+        this.categoriaString = categoriaString;
+    }
 }
 

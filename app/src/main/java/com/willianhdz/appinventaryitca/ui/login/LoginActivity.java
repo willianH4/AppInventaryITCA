@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.willianhdz.appinventaryitca.R;
 import com.willianhdz.appinventaryitca.data.Dtos.categoria;
+import com.willianhdz.appinventaryitca.data.model.categoriaDAO;
 
 public class LoginActivity extends AppCompatActivity {
 

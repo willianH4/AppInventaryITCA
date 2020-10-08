@@ -11,9 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.willianhdz.appinventaryitca.MainActivity;
 import com.willianhdz.appinventaryitca.R;
 import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
-import com.willianhdz.appinventaryitca.ui.Usuario.MainActivityUsuario2;
+import com.willianhdz.appinventaryitca.ui.usuario.MainActivityUsuario2;
 
 public class Login_ejemplo extends AppCompatActivity {
 

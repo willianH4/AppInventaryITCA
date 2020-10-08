@@ -242,11 +242,11 @@ producto po = new producto();
         // LLamar DAO producto
         SQLiteDatabase db=conexion.getReadableDatabase();
        //String[] categorias = new String[gestorBD.listarProducto().size()];
-        Categorias2. categoria = null;
+        Categorias2 categoria = null;
         categoriaslist = new ArrayList<Categorias2>();
         Cursor cursor = db.rawQuery("select * from tb_categoria", null);
         while (cursor.moveToNext()){
-            Categorias2 categoria = new Categorias2();
+            categoria = new Categorias2();
             categoria.setId_categoria(cursor.getInt(0));
             categoria.setNombre(cursor.getString(1));
             categoria.setEstado(cursor.getInt(2));

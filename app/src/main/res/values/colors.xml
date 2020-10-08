@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#435EEC</color>
+    <color name="colorPrimary">#F50057</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#D2691E</color>
     <color name="tool">@color/dodgerblue</color>
-    <color name="white">#fff</color>
 
+    <color name="mycolor1">#3F51B5</color>
+    <color name="mycolor">#FF5722</color>
+    <color name="nuevo">#FF5722</color>
+    <color name="nuevo2">#8C5B35</color>
+    <color name="white">#fff</color>
     <color name="black">#000000</color>
     <color name="blackSemiTransparent">#50000000</color>
     <color name="ivory">#FFFFF0</color>
     <color name="lightyellow">#FFFFE0</color>
     <color name="yellow">#FFFF00</color>
-    <color name="snow">#FFFAFA</color>
+    <color name="will3">#FFC107</color>
     <color name="floralwhite">#FFFAF0</color>
     <color name="lemonchiffon">#FFFACD</color>
     <color name="cornsilk">#FFF8DC</color>

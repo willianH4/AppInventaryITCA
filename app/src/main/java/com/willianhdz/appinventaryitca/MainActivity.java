@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.willianhdz.appinventaryitca.ui.Usuario.MainActivityUsuario;
+import com.willianhdz.appinventaryitca.ui.usuario.MainActivityUsuario;
 
 public class MainActivity extends AppCompatActivity {
     private Button btn1, btn2, btn3,btn4;

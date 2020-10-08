@@ -7,6 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.willianhdz.appinventaryitca.R;
+import com.willianhdz.appinventaryitca.data.LoginRepository;
+import com.willianhdz.appinventaryitca.data.Result;
+import com.willianhdz.appinventaryitca.data.model.LoggedInUser;
 
 public class LoginViewModel extends ViewModel {
 
