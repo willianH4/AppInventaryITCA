@@ -1,5 +1,6 @@
 package com.willianhdz.appinventaryitca.data.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,10 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.willianhdz.appinventaryitca.R;
-import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
 import com.willianhdz.appinventaryitca.data.Dtos.producto;
 import com.willianhdz.appinventaryitca.data.Dtos.usuario;
+import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
+import com.willianhdz.appinventaryitca.R;
+//import com.willianhdz.appinventaryitca.RecyclerView.AdaptadorUsuario;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Locale;
 
 public class Conexion_SQLite extends SQLiteOpenHelper {
 
+
     boolean estado = true;
     boolean estadoDelete = true;
     //Instancias para futuros metodos
@@ -34,10 +37,11 @@ public class Conexion_SQLite extends SQLiteOpenHelper {
     private ArrayList<usuario> usuariosList;
     private ArrayList<Categorias2> categoriasList;
     private ArrayList<String> listaCategorias;
+    private ArrayList<producto> productoList;
 
-    public Conexion_SQLite(Context context) {
-        super(context, "inventary.db", null, 1);
+    public Conexion_SQLite(Context context){ super(context, "WCABN.db", null, 1);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -48,7 +52,7 @@ public class Conexion_SQLite extends SQLiteOpenHelper {
         //CREACION DE LA PRIMERA TABLA tb_producto
         db.execSQL("create table tb_producto(id_producto integer primary key autoincrement ," +
                 " nombre_producto varchar(50) not null, des_producto varchar(90) not null, stock real not null , precio real not null, " +
-                " unidad_de_medida varchar(20) not null, estado_producto int(1) not null,fecha_entrada datetime not null, " +
+                " unidad_de_medida varchar(20) not null, estado_producto int(1) not null, fecha_entrada datetime not null, " +
                 " categoria int(5) not null, " +
                 "FOREIGN KEY (categoria) REFERENCES tb_categoria(id_categoria))");
 
@@ -60,23 +64,27 @@ public class Conexion_SQLite extends SQLiteOpenHelper {
 
         //SE CREO UN  REGISTRO DE USUARIO
         //PARA ASI PUEDA INICIAR SESION SIN REGISTRARSE ES EL USUARIO MASTER
-        db.execSQL("insert into tb_usuario values('1', 'Cristian','Orellana','cris@gmail.com','Administrador'," +
+        db.execSQL("insert into tb_usuario values('1', 'Cristian','Orellana','prueba@gmail.com','Administrador'," +
                 " '123','1', '1', '¿Nombre de tu abuela?', 'Emelina', datetime('now', 'localtime'))");
+
+        db.execSQL("insert into tb_categoria values('1','Electronica','1')");
     }
 
-public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists tb_producto");
         db.execSQL("drop table if exists tb_categoria");
         db.execSQL("drop table if exists tb_usuario");
     }
 
-private String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     Calendar cal = Calendar.getInstance();
+    @SuppressLint("SimpleDateFormat")
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String fecha1 = sdf.format(cal.getTime());
 
@@ -85,62 +93,6 @@ private String getDateTime() {
         SQLiteDatabase bd = this.getWritableDatabase();
         return bd;
     }
-
-//METODOS PARA LA TABLA PRODUCTO
-
-
-/*public boolean Insertar() {
-}
-*/
-
-/*
-public boolean consultaid() {
-}
-
-
-
-
-public boolean consultarDescripcion() {
-}
-
-
-public boolean bajaid() {
-
-}
-
-public boolean modificar(){
-
-}
-
-
-
-*/
-
-
-//METODOS PARA LA TABLA CATEGORIA
-
-
-/*public boolean Insertar() {
-
-}
-
-
-public boolean consultaid() {
-}
-
-
-public boolean bajaid() {
-
-}
-
-public boolean modificar(){
-
-}*/
-
-
-//
-
-
 
 
     //METODOS PARA LA TABLA UUARIO
@@ -155,7 +107,7 @@ public boolean modificar(){
             registro.put("nombre", us.getNombre());
             registro.put("apellido", us.getApellido());
             registro.put("correo", us.getCorreo());
-            registro.put("com/willianhdz/appinventaryitca/ui/usuario", us.getUsuario());
+            registro.put("usuario", us.getUsuario());
             registro.put("clave", us.getClave());
             registro.put("tipo", us.getTipo());
             registro.put("estado", us.getEstado_us());
@@ -190,7 +142,7 @@ public boolean modificar(){
             String[] parametros = {String.valueOf(us.getId_usu())};
             String[] campos = {
                     "id_usuario", "nombre", "apellido", "correo",
-                    "com/willianhdz/appinventaryitca/ui/usuario", "clave", "tipo", "estado", "pregunta",
+                    "usuario", "clave", "tipo", "estado", "pregunta",
                     "respuesta", "fecha_de_registro"
             };
             Cursor fila = bd.query("tb_usuario", campos, "id_usuario=?", parametros, null, null, null);
@@ -297,7 +249,7 @@ public boolean modificar(){
             registro.put("nombre", nom);
             registro.put("apellido", ape);
             registro.put("correo", email);
-            registro.put("com/willianhdz/appinventaryitca/ui/usuario", user);
+            registro.put("usuario", user);
             registro.put("clave", pass);
             registro.put("tipo", tipo);
             registro.put("estado", est);
@@ -319,6 +271,18 @@ public boolean modificar(){
         return estado;
     }
 
+    public List<usuario> mostrarUsuario(){
+        SQLiteDatabase bd = this.getReadableDatabase();
+        Cursor cursor = bd.rawQuery("SELECT * FROM tb_usuario order by id_usuario desc", null);
+        List<usuario> usuarios = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do{
+                usuarios.add(new usuario(cursor.getInt(0), cursor.getString(1),cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6),
+                        cursor.getInt(7), cursor.getString(8), cursor.getString(9)));
+            }while (cursor.moveToNext());
+        }
+        return usuarios;
+    }
 
 
     public Cursor consultarusu(String usu, String pas) throws SQLException {
@@ -331,28 +295,28 @@ public boolean modificar(){
     }
 /******************************************************************************************************/
 /******************************************************************************************************/
-/************************************************TABLA CATEGORIA********************************/
+    /************************************************TABLA CATEGORIA********************************/
 
-public boolean InserCategorias(Categorias2 datos) {
-    boolean estado = true;
-    int resultado;
-    //SQLiteDatabase bd —— this.getWritableDatabase(),
-    try {
-        int id_categoria = datos.getId_categoria();
-        String nom_categoria = datos.getNombre();
-        int estadoCategoria = datos.getEstado();
+    public boolean InserCategorias(Categorias2 datos) {
+        boolean estado = true;
+        int resultado;
+        //SQLiteDatabase bd —— this.getWritableDatabase(),
+        try {
+            int id_categoria = datos.getId_categoria();
+            String nom_categoria = datos.getNombre();
+            int estadoCategoria = datos.getEstado();
 
-        //Cursor fila —— this.getWritableDatabase().rawQuery(”select codigo from adiculos where codigo——”’+codigo+ ’, null),
-        Cursor fila = bd().rawQuery("select id_categoria from tb_categoria where id_categoria='" + id_categoria + "'", null);
-        if (fila.moveToFirst() == true) {
-            estado = false;
-        } else {
-            //estado —— (boolean)this.getWritableDatabase().insed(”datos”,”nombre, correo, telefono”, registro),
-            //resultado —— (int) this.getWritableDatabase().insert(”usuarios”, "nombres, apellidos, usuario, clave,pregunta,respuesta", registro),
-            String SQL = "INSERT INTO tb_categoria \n" + "(id_categoria,nom_categoria,estado_categoria)\n" + "VALUES \n" +
-                    "('" + id_categoria + "', '" + nom_categoria + "', '" + estadoCategoria + "');";
-            bd().execSQL(SQL);
-            bd().close();
+            //Cursor fila —— this.getWritableDatabase().rawQuery(”select codigo from adiculos where codigo——”’+codigo+ ’, null),
+            Cursor fila = bd().rawQuery("select id_categoria from tb_categoria where id_categoria='" + id_categoria + "'", null);
+            if (fila.moveToFirst() == true) {
+                estado = false;
+            } else {
+                //estado —— (boolean)this.getWritableDatabase().insed(”datos”,”nombre, correo, telefono”, registro),
+                //resultado —— (int) this.getWritableDatabase().insert(”usuarios”, "nombres, apellidos, usuario, clave,pregunta,respuesta", registro),
+                String SQL = "INSERT INTO tb_categoria \n" + "(id_categoria,nom_categoria,estado_categoria)\n" + "VALUES \n" +
+                        "('" + id_categoria + "', '" + nom_categoria + "', '" + estadoCategoria + "');";
+                bd().execSQL(SQL);
+                bd().close();
 
         /*
         this.getWritableDatabase().execSQL(SQL):
@@ -360,15 +324,15 @@ public boolean InserCategorias(Categorias2 datos) {
 
         */
 
-            estado = true;
-        }
+                estado = true;
+            }
 
-    } catch (Exception e) {
-        estado = false;
-        Log.e("error.", e.toString());
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
     }
-    return estado;
-}
 
 
 
@@ -414,10 +378,6 @@ public boolean InserCategorias(Categorias2 datos) {
             String nom_categoria = datos.getNombre();
             int estado_categoria = datos.getEstado();
 
-            //getting the current time for joining date
-            Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String fecha1 = sdf.format(cal.getTime());
 
             Cursor fila = bd().rawQuery("select id_categoria from tb_categoria where id_categoria='" +
                     datos.getId_categoria() + "'", null);
@@ -691,7 +651,7 @@ public boolean InserCategorias(Categorias2 datos) {
 
     public List<Categorias2> mostrarCategorias(){
         SQLiteDatabase bd = this.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT * FROM tb_categorias order by id_categoria desc", null);
+        Cursor cursor = bd.rawQuery("SELECT * FROM tb_categoria order by id_categoria desc", null);
         List<Categorias2> categorias = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
@@ -706,9 +666,6 @@ public boolean InserCategorias(Categorias2 datos) {
     /************************************************TABLA CATEGORIA********************************/
 
 
-
-    //METODOS PARA LA TABLA UUARIO
-
     //Funcion para insertar registros
     public boolean InsertarProducto(producto po) {
         boolean estado = true;
@@ -722,10 +679,11 @@ public boolean InserCategorias(Categorias2 datos) {
             registro.put("precio", po.getPrecio());
             registro.put("unidad_de_medida", po.getUnidad());
             registro.put("estado_producto", po.getEstado());
-            registro.put("fecha_entrada", getDateTime());
             registro.put("categoria", po.getCategoria());
+            registro.put("fecha_entrada", getDateTime());
 
-            Cursor fila = bd().rawQuery("select id_producto from tb_usuario where id_producto=" + po.getId_pr() + "", null);
+
+            Cursor fila = bd().rawQuery("select id_producto from tb_producto where id_producto=" + po.getId_pr(), null);
             if (fila.moveToFirst() == true){
                 estado = false;
             }else {
@@ -742,110 +700,170 @@ public boolean InserCategorias(Categorias2 datos) {
         }
         return estado;
     }
+    /*
+    //METODOS PARA LA TABLA Produsto
 
-    //Funcion para consultar un registro
-    public boolean consultaidUsuario(producto po) {
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getReadableDatabase();
-        try {
-            String[] parametros = {String.valueOf(po.getId_pr())};
-            String[] campos = {
-                    "id_producto", "nombre_producto", "des_producto", "stock",
-                    "precio", "unidad_de_medida", "estado_producto", "categoria", "fecha_entrada"
-            };
-            Cursor fila = bd.query("tb_producto", campos, "id_producto=?", parametros, null, null, null);
-            if (fila.moveToFirst()){
-                po.setId_pr(Integer.parseInt(fila.getString(0)));
-                po.setNom_pro(fila.getString(1));
-                po.setDes_pro(fila.getString(2));
-                po.setStock(Double.parseDouble(fila.getString(3)));
-                po.setPrecio(Double.parseDouble(fila.getString(4)));
-                po.setUnidad(fila.getString(5));
-                po.setEstado(Integer.parseInt(fila.getString(6)));
-                po.setCategoria(Integer.parseInt(fila.getString(7)));
-                estado = true;
+    public boolean insertarProducto(producto datos){
+        ContentValues productoValues = new ContentValues();
+        boolean estado = false;
+        try{
+            productoValues.put("id_producto", datos.getId_pr());
+            productoValues.put("nombre_producto", datos.getNom_pro());
+            productoValues.put("des_producto", datos.getDes_pro());
+            productoValues.put("stock", datos.getStock());
+            productoValues.put("precio", datos.getPrecio());
+            productoValues.put("unidad_de_medida", datos.getUnidad());
+            productoValues.put("estado_producto", datos.getEstado());
+            productoValues.put("fecha_entrada", this.getDateTime());
+            productoValues.put("categoria",datos.getCategoria());
 
-            }else {
+            SQLiteDatabase gestor = bd();
+            if(gestor.insert("tb_producto", null,productoValues) < 0){
+                Log.i("insertar ", "Error de insercion");
                 estado = false;
             }
-            fila.close();
-            bd.close();
+            estado = true;
         }catch (Exception ex){
+            Log.i("Error insertar ", ex.toString());
             estado = false;
-            Log.e("Error.", ex.toString());
         }
         return estado;
+    }
+*/
+    public boolean consultarNombreProducto(producto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        try {
+            String nombre = datos.getNom_pro();
+            Cursor fila = bd.rawQuery("select id_producto, nombre_producto, des_producto, stock, precio, unidad_de_medida, estado_producto from tb_producto " +
+                    "where nombre_producto='" + nombre + "'", null);
+            if (fila.moveToFirst()) {
+                datos.setId_pr(Integer.parseInt(fila.getString(0)));
+                datos.setNom_pro(fila.getString(1));
+                datos.setDes_pro(fila.getString(2));
+                datos.setStock(Double.parseDouble(fila.getString(3)));
+                datos.setPrecio(Double.parseDouble(fila.getString(4)));
+                datos.setUnidad(fila.getString(5));
 
+
+                estado = true;
+            } else {
+                estado = false;
+            }
+            bd.close();
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
     }
 
-    //Funcion para eliminar un registro
-    public boolean bajaidUsuario(final Context context, final producto po) {
-        estado = true;
+    public boolean consultarIdProducto(producto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
         try {
-            int codigo =po.getId_pr();
-            Cursor fila = bd().rawQuery("select * from tb_producto where id_producto=" + codigo + "", null);
-            if (fila.moveToFirst()){
-                po.setId_pr(Integer.parseInt(fila.getString(0)));
-                po.setNom_pro(fila.getString(1));
-                po.setDes_pro(fila.getString(2));
-                po.setStock(Double.parseDouble(fila.getString(3)));
-                po.setPrecio(Double.parseDouble(fila.getString(4)));
-                po.setUnidad(fila.getString(5));
-                po.setEstado(Integer.parseInt(fila.getString(6)));
-                po.setCategoria(Integer.parseInt(fila.getString(7)));
+            int Id = datos.getId_pr();
+            Cursor fila = bd.rawQuery("select id_producto, nombre_producto, des_producto, stock, precio, unidad_de_medida from tb_producto where id_producto="+ Id, null);
+            if (fila.moveToFirst()) {
+                datos.setId_pr(Integer.parseInt(fila.getString(0)));
+                datos.setNom_pro(fila.getString(1));
+                datos.setDes_pro(fila.getString(2));
+                datos.setStock(Double.parseDouble(fila.getString(3)));
+                datos.setPrecio(Double.parseDouble(fila.getString(4)));
+                datos.setUnidad(fila.getString(5));
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Warning");
-                builder.setMessage("¿Estas seguro de borrar el registro?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int id = po.getId_pr();
-                        int cant = bd().delete("tb_producto", "id_producto=" + id, null);
-                        if (cant > 0){
-                            estado = true;
-                            Toast.makeText(context, "Registro eliminado sastifactoriamente", Toast.LENGTH_SHORT).show();
-                        }else {
-                            estado = false;
-                        }
-                        bd().close();
-                    }
-                });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
 
-            }else {
-                Toast.makeText(context, "No hay resultados encontrados", Toast.LENGTH_SHORT).show();
+                estado = true;
+            } else {
+                estado = false;
             }
-        }catch (Exception ex){
+            bd.close();
+        } catch (Exception e) {
             estado = false;
-            Log.e("Error.", ex.toString());
+            Log.e("error.", e.toString());
         }
         return estado;
+    }
+
+    public ArrayList<producto> listarProducto(){
+        ArrayList<producto> productosList = new ArrayList<producto>();
+        SQLiteDatabase gestor = bd();
+        producto nuevoProducto = new producto();
+        try{
+            Cursor datos  = gestor.rawQuery("SELECT * FROM tb_producto",null);
+            while(datos.moveToNext()){
+                nuevoProducto.setId_pr(datos.getInt(0));
+                nuevoProducto.setNom_pro(datos.getString(1));
+                nuevoProducto.setDes_pro(datos.getString(2));
+                nuevoProducto.setStock(datos.getInt(3));
+                nuevoProducto.setPrecio(datos.getDouble(4));
+                nuevoProducto.setUnidad(datos.getString(5));
+                nuevoProducto.setEstado(datos.getInt(6));
+                nuevoProducto.setCategoria(datos.getInt(7));
+                nuevoProducto.setCategoriaString(this.obtenerLlave(datos.getString(8)));
+                productosList.add(nuevoProducto);
+                Log.i("Producto id: ", String.valueOf(nuevoProducto.getId_pr()));
+                Log.i("Categoria ", nuevoProducto.getCategoriaString());
+
+
+            }
+        }catch (Exception ex){
+            Log.i("Error Listar", ex.toString());
+        }
+        return productosList;
+    }
+    /*
+        public ArrayList<producto> listarProducto2(){
+            ArrayList<producto> productosList = new ArrayList<>();
+            SQLiteDatabase gestor = bd();
+            producto nuevoProducto = new producto();
+            try{
+
+                Cursor datos  = gestor.rawQuery("SELECT * FROM tb_producto",null);
+                while(datos.moveToNext()){
+                    nuevoProducto.setId_pr(datos.getInt(0));
+
+                    productosList.add(nuevoProducto);
+                }
+
+            }catch (Exception ex){
+                Log.i("Error Listar", ex.toString());
+            }
+            return productosList;
+        }
+    */
+    public String obtenerLlave(String idcategoria){
+        SQLiteDatabase gestor = bd();
+        String llave = "Sin categoria";
+        try{
+            Cursor datos = gestor.rawQuery("SELECT nom_categoria FROM tb_categoria where id_categoria = ? ;", new String[]{String.valueOf(idcategoria)} );
+            while (datos.moveToNext()){
+                llave = datos.getString(0);
+            }
+        }catch (Exception ex){
+            Log.i("obtener llave", ex.toString());
+        }
+        return llave;
     }
 
     //Funcion para insertar registros
-    public boolean modificarUsuario(producto po){
+    public boolean modificarProducto(producto us){
         boolean estado = true;
         int resultado;
         SQLiteDatabase bd = this.getWritableDatabase();
         try{
 
-            int id =  po.getId_pr();
-            String nom = po.getNom_pro();
-            String des = po.getDes_pro();
-            double stock = po.getStock();
-            double precio = po.getPrecio();
-            String unidad = po.getUnidad();
-            int esta = po.getEstado();
-            int category = po.getCategoria();
+            int id =  us.getId_pr();
+            String nom = us.getNom_pro();
+            String des = us.getDes_pro();
+            double stock = us.getStock();
+            double precio = us.getPrecio();
+            String unidad = us.getUnidad();
+            int estad = us.getEstado();
+            int cat = us.getCategoria();
+
             ContentValues registro = new ContentValues();
             registro.put("id_producto", id);
             registro.put("nombre_producto", nom);
@@ -853,9 +871,10 @@ public boolean InserCategorias(Categorias2 datos) {
             registro.put("stock", stock);
             registro.put("precio", precio);
             registro.put("unidad_de_medida", unidad);
-            registro.put("estado_producto", esta);
-            registro.put("fecha_de_registro", getDateTime());
-            registro.put("categoria", category);
+            registro.put("estado_producto", estad);
+            registro.put("categoria", cat);
+            registro.put("fecha_entrada", getDateTime());
+
             int cant = (int) bd.update("tb_producto", registro, "id_producto=" + id, null);
             bd.close();
             if(cant>0) {
@@ -872,17 +891,59 @@ public boolean InserCategorias(Categorias2 datos) {
 
 
 
+    public boolean bajaIdProducto(final Context context, final producto po) {
 
-/*
-    public Cursor consultarpro(String poo, String pas) throws SQLException {
-        Cursor mcursor = null;
+        final boolean[] estadoDelete = {true};
+        try {
+            int id = po.getId_pr();
+            Cursor fila = bd().rawQuery("select * from tb_producto where id_producto=" + id , null);
+            if (fila.moveToFirst()) {
+                po.setId_pr(Integer.parseInt(fila.getString(0)));
+                po.setNom_pro(fila.getString(1));
+                po.setDes_pro(fila.getString(2));
+                po.setStock(Double.parseDouble(fila.getString(3)));
+                po.setPrecio(Double.parseDouble(fila.getString(4)));
+                po.setUnidad(fila.getString(5));
+                po.setEstado(Integer.parseInt(fila.getString(6)));
 
-        mcursor =this.getReadableDatabase().query("tb_producto", new String[]{"id_producto", "nombre_producto", "des_producto", "stock",
-                "precio", "unidad_de_medida", "estado_producto", "categoria", "fecha_entrada"}, "correo like'"+usu+"' "+"and clave like'"+pas+"'",null,null,null,null);
 
-        return  mcursor;
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_borrar);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nid_producto: " + po.getId_pr() + "\nNombre: " + po.getNom_pro());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //String[] parametros —— {String. valueOf(datos.getCodigo())},
+                        int id = po.getId_pr();
+                        int cant = bd().delete("tb_producto", "id_producto=" + id, null);
+                        //bd(). delete(”articulos”,”codigo——?”,parametros),
+                        if (cant > 0) {
+                            estadoDelete[0] = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete[0] = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            estadoDelete[0] = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete[0];
     }
-*/
-
-
 }

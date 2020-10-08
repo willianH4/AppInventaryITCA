@@ -43,7 +43,7 @@
         <EditText
             android:id="@+id/correo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginTop="@dimen/space45dp"
             android:background="@drawable/estilotextview"
             android:textColorHint="@color/black"
@@ -60,7 +60,7 @@
         <EditText
             android:id="@+id/contra"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="Password"
             android:layout_marginTop="@dimen/space20dp"
             android:background="@drawable/estilotextview"
@@ -90,6 +90,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginBottom="22dp"
                 android:background="@drawable/estiloboton"
+                android:textColor="@color/white"
                 android:text="INGRESAR"
                 android:layout_marginLeft="@dimen/space45dp"
                 android:layout_marginRight="@dimen/space20dp"
@@ -104,13 +105,34 @@
                 android:background="@drawable/estiloboton"
                 android:layout_marginTop="22dp"
                 android:layout_marginBottom="22dp"
+                android:textColor="@color/white"
                 android:text="Nuevo"
                 android:layout_marginLeft="@dimen/space45dp"
 
 
                 />
 
+
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Email: prueba@gmail.com"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Password: 123"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
+
+
+
     </LinearLayout>
 
 
