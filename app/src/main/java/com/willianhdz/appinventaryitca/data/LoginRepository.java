@@ -1,6 +1,4 @@
-package com.willianhdz.appinventaryitca.data.model;
-
-import com.willianhdz.appinventaryitca.data.model.LoggedInUser;
+package com.willianhdz.appinventaryitca.data;
 
 /**
  * Class that requests authentication and user information from the remote data source and

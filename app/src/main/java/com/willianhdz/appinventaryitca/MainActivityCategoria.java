@@ -1,31 +1,24 @@
 package com.willianhdz.appinventaryitca;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
-import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.willianhdz.appinventaryitca.data.Dtos.Categorias2;
+import com.willianhdz.appinventaryitca.data.db.Conexion_SQLite;
 import com.willianhdz.appinventaryitca.recycleview.RecyclerviewCategorias;
 import com.willianhdz.appinventaryitca.recycleview.RecycleviewUsuario;
-import com.willianhdz.appinventaryitca.ui.Usuario.MainActivityUsuario;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -46,41 +39,41 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
     Categorias2 datos = new Categorias2();
     AlertDialog.Builder dialogo;
 
-    /*
-        @Override
-        public boolean onKeyDown(int keyCode, KeyEvent event) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                new android.app.AlertDialog.Builder(this)
-                        .setIcon(R.drawable.ic_close)
-                        .setTitle("Warning")
-                        .setMessage("¿Realmente desea salir?")
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-                        {//un listener que at pulsar, cierre la aplicacion
+/*
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            new android.app.AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_close)
+                    .setTitle("Warning")
+                    .setMessage("¿Realmente desea salir?")
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                    {//un listener que at pulsar, cierre la aplicacion
 
-                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                                /*lntent intent —— new Intent(DashboardLuces.this, luces control sms.class), startActivity(intent),’”/
-            //MainActivity.this.finishAffinity(),
-            //finish()
+                            /*lntent intent —— new Intent(DashboardLuces.this, luces control sms.class), startActivity(intent),’”/
+        //MainActivity.this.finishAffinity(),
+        //finish()
 
-                                finish();
-                                Intent Retornar = new Intent(MainActivityCategoria.this, MainActivity.class);
-                                startActivity(Retornar);
-                            }
-                        })
-                        .show();
+                            finish();
+                            Intent Retornar = new Intent(MainActivityCategoria.this, MainActivity.class);
+                            startActivity(Retornar);
+                        }
+                    })
+                    .show();
 
-                // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
-                return true;
-            }
-
-            //para las demas cosas, se reenvia el evento at listener habitual
-            return super.onKeyDown(keyCode, event);
+            // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
+            return true;
         }
-    */
+
+        //para las demas cosas, se reenvia el evento at listener habitual
+        return super.onKeyDown(keyCode, event);
+    }
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,7 +196,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
             public void onClick(DialogInterface dialogo, int id) {
         /*lntent intent —— new Intent(DashboardLuces.this, luces control sms. class), startActivity(intent),”/
         //DashboardLuces.this. finishAffinity(), */
-                //   MainActivityCategoria.this.finish();
+              //   MainActivityCategoria.this.finish();
             }
         });
         dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -214,7 +207,7 @@ public class MainActivityCategoria extends AppCompatActivity implements View.OnC
         dialogo.show();
     }
 
-    //////////////////Comentado bloque de menu no implementado
+     //////////////////Comentado bloque de menu no implementado
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu,’ this adds items to the action bar if it is present.

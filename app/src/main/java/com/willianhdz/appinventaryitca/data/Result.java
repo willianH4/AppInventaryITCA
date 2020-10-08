@@ -1,4 +1,4 @@
-package com.willianhdz.appinventaryitca.data.model;
+package com.willianhdz.appinventaryitca.data;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.
@@ -11,10 +11,10 @@ public class Result<T> {
     @Override
     public String toString() {
         if (this instanceof Result.Success) {
-            Success success = (Success) this;
+            Result.Success success = (Result.Success) this;
             return "Success[data=" + success.getData().toString() + "]";
         } else if (this instanceof Result.Error) {
-            Error error = (Error) this;
+            Result.Error error = (Result.Error) this;
             return "Error[exception=" + error.getError().toString() + "]";
         }
         return "";

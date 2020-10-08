@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#50440A"
+    android:background="#FAE200"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main"
     >
@@ -107,7 +107,7 @@
                 android:id="@+id/btn_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acerca de"
+                android:text="Creadores"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:background="@drawable/estiloboton"

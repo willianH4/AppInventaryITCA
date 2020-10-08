@@ -106,12 +106,12 @@
                 android:id="@+id/stock_producto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Ingrese el "
+                android:hint="Ingrese stock producto "
                 android:background="@drawable/estilotextview"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
                 android:textColorHint="@color/black"
-                android:inputType="" />
+                android:inputType="number" />
 
             <Space
                 android:layout_width="match_parent"
@@ -123,15 +123,15 @@
                  android:text="Usuario: " />
  -->
             <EditText
-                android:id="@+id/usuario_user"
+                android:id="@+id/precio_producto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Ingrese el Username"
+                android:hint="Ingrese el precio"
                 android:background="@drawable/estilotextview"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
                 android:textColorHint="@color/black"
-                android:inputType="text" />
+                android:inputType="numberDecimal" />
 
             <Space
                 android:layout_width="match_parent"
@@ -143,90 +143,58 @@
             -->
 
             <EditText
-                android:id="@+id/usuario_contrasena"
+                android:id="@+id/unidad_producto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Ingrese la contraseña"
+                android:hint="Ingrese la unidad de medida"
                 android:background="@drawable/estilotextview"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
                 android:textColorHint="@color/black"
-                android:inputType="textPassword" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="Tipo de usuario: " />
-            <Spinner
-                android:id="@+id/usuaio_tipo"
-                android:background="@drawable/estilotextview"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:layout_height="match_parent"
-                android:text="Estado: " />
-            <Spinner
-                android:id="@+id/usuaio_estado"
-                android:layout_width="match_parent"
-                android:background="@drawable/estilotextview"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="Pregunta: " />
-            <Spinner
-                android:id="@+id/usuaio_pregunta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="@drawable/estilotextview"
-                android:textAlignment="center"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:text="Respuesta a la pregunta: " />
-            <EditText
-                android:id="@+id/usuario_respuesta"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/estilotextview"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textColorHint="@color/black"
-                android:hint="Ingrese la respuesta"
                 android:inputType="text" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="#03A9F4"
+                android:text="Estado producto: " />
+            <Spinner
+                android:id="@+id/estado_producto"
+                android:background="@drawable/estilotextview"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="#03A9F4"
+                android:textSize="20dp"
+                android:layout_height="match_parent"
+                android:text="Categoria: " />
+            <Spinner
+                android:id="@+id/categoria_producto"
+                android:layout_width="match_parent"
+                android:background="@drawable/estilotextview"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
 
             <Button
                 android:id="@+id/btn_guardar"
@@ -234,8 +202,10 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/estiloboton"
-                android:textColor="#000"
-                android:text="Registrar" android:onClick="alta" />
+                android:onClick="guardarProducto"
+                android:text="Registrar"
+                android:textColor="#fff"
+                />
 
             <Space
                 android:layout_width="match_parent"
@@ -244,11 +214,12 @@
             <Button
                 android:id="@+id/btn_consultacodigo"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
-                android:textColor="#000"
-                android:text="Consulta" android:onClick="consultaporcodigo"/>
+                android:onClick="consultaporId"
+                android:text="Consulta"
+                android:textColor="#fff"
+                 />
 
 
             <Space
@@ -258,10 +229,10 @@
             <Button
                 android:id="@+id/btn_editar"
                 android:layout_width="match_parent"
-                android:visibility="gone"
+
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:text="Modificar" android:onClick="modificacion" />
 
             <Space
@@ -272,10 +243,14 @@
                 android:id="@+id/btn_borrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+
                 android:background="@drawable/estiloboton"
-                android:textColor="#000"
-                android:text="Eliminar" android:onClick="bajaporcodigo"/>
+                android:textColor="#fff"
+                android:text="Eliminar" android:onClick="bajaporcodigoPro"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
         </LinearLayout>
     </ScrollView>
 

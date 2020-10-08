@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textSize="28dp"
         android:background="@drawable/estilotextview"
-        android:text="Vista Usuario"
+        android:text="Registrar Usuario"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:gravity="center_horizontal" />
@@ -242,58 +242,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
                 android:textColor="#fff"
-                android:text="guardar" android:onClick="alta" />
+                android:text="Registrar" android:onClick="alta" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
-            <Button
-                android:id="@+id/btn_consultacodigo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/estiloboton"
-                android:textColor="#fff"
-                android:text="Consulta" android:onClick="consultaporcodigo"/>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <Button
-                android:id="@+id/btn_editar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/estiloboton"
-                android:textColor="#fff"
-                android:text="Modificar" android:onClick="modificacion" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <Button
-                android:id="@+id/btn_borrar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:background="@drawable/estiloboton"
-                android:textColor="#fff"
-                android:text="Eliminar" android:onClick="bajaporcodigo"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <Button
-                android:id="@+id/btn_lista"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:background="@drawable/estiloboton"
-                android:textColor="#fff"
-                android:text="listar" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />

@@ -1,4 +1,4 @@
-package com.willianhdz.appinventaryitca.data.model;
+package com.willianhdz.appinventaryitca.data;
 
 import com.willianhdz.appinventaryitca.data.model.LoggedInUser;
 
